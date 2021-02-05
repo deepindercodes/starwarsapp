@@ -1,0 +1,128 @@
+﻿@model starwarsapp.Models.planets
+
+@{
+    ViewBag.Title = "PlanetDetails";
+}
+
+<br />
+@Html.ActionLink("Back", "Films")
+<br />
+<style type="text/css">
+    dd {
+        padding: 5px
+    }
+</style>
+<div>
+    <h4>Details for the planet : @Model.name</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            Rotation Period
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rotation_period)
+        </dd>
+
+        <dt>
+            Orbital Period
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.orbital_period)
+        </dd>
+
+        <dt>
+            Diameter
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.diameter)
+        </dd>
+
+        <dt>
+            Climate
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.climate)
+        </dd>
+
+        <dt>
+            Gravity
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gravity)
+        </dd>
+
+        <dt>
+            Terrain
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.terrain)
+        </dd>
+
+        <dt>
+            Surface Water
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.surface_water)
+        </dd>
+
+        <dt>
+            Population
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.population)
+        </dd>
+
+        <dt>
+            Created
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.created)
+        </dd>
+
+        <dt>
+            Edited
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.edited)
+        </dd>
+
+        <dt>Residents : </dt>
+        <dd>
+            @foreach (var people in Model.residents)
+            {
+                @Html.ActionLink(starwarsapp.Models.StarWarsApi.GetCharactersInfo(Convert.ToInt32(people.ToString().Replace("http://swapi.dev/api/people/", "").Replace("/", ""))).name, "peopledetails", new { id = people.ToString().Replace("http://swapi.dev/api/people/", "").Replace("/", "") }, new { @class = "form-control" })<br />
+            }
+        </dd>
+
+        <dt>Films : </dt>
+        <dd>
+            @foreach (var film in Model.films)
+            {
+                @Html.ActionLink(starwarsapp.Models.StarWarsApi.GetFilmName(Convert.ToInt32(film.Replace("http://swapi.dev/api/films/", "").Replace("/", ""))), "filmdetails", new { id = film.Replace("http://swapi.dev/api/films/", "").Replace("/", "") }, new { @class = "form-control" })<br />
+            }
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

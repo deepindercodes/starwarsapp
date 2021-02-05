@@ -1,0 +1,123 @@
+﻿@model starwarsapp.Models.filmdetails
+
+@{
+    ViewBag.Title = "FilmDetails";
+}
+
+<br />
+@Html.ActionLink("Back","Films")
+<br />
+<style type="text/css">
+    dd{
+        padding:5px
+    }
+</style>
+<div>
+    <h4>Details for the Star Wars Movie : @Model.title</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Title
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.title)
+        </dd>
+
+        <dt>
+            Episode ID
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.episode_id)
+        </dd>
+
+        <dt>
+            POening Crawl
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.opening_crawl)
+        </dd>
+
+        <dt>
+            Director
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.director)
+        </dd>
+
+        <dt>
+            Producer
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.producer)
+        </dd>
+
+        <dt>
+            Release Date
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.release_date)
+        </dd>
+
+        <dt>
+            Created
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.created)
+        </dd>
+
+        <dt>
+            Edited
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.edited)
+        </dd>
+
+        <dt>Characters : </dt>
+        <dd>
+            @foreach (var character in Model.characterinfo)
+            {
+                @Html.ActionLink(character.name, "peopledetails", new { id = character.url.Replace("http://swapi.dev/api/people/", "").Replace("/", "") }, new { @class = "form-control" })<br />
+            }
+        </dd>
+
+        <dt>Planets : </dt>
+        <dd>
+            @foreach (var planet in Model.planetsinfo)
+            {
+                @Html.ActionLink(planet.name, "planetdetails", new { id = planet.url.Replace("http://swapi.dev/api/planets/", "").Replace("/", "") }, new { @class = "form-control" })<br />
+            }
+        </dd>
+
+        <dt>Star Ships : </dt>
+        <dd>
+            @foreach (var starship in Model.starshipsinfo)
+            {
+                @Html.ActionLink(starship.name, "starshipdetails", new { id = starship.url.Replace("http://swapi.dev/api/starships/", "").Replace("/", "") }, new { @class = "form-control" })<br />
+            }
+        </dd>
+
+        <dt>Vehicles : </dt>
+        <dd>
+            @foreach (var vehicle in Model.vehiclesinfo)
+            {
+                @Html.ActionLink(vehicle.name, "vehicledetails", new { id = vehicle.url.Replace("http://swapi.dev/api/vehicles/", "").Replace("/", "") }, new { @class = "form-control" })<br />
+            }
+        </dd>
+
+        <dt>Species : </dt>
+        <dd>
+            @foreach (var species in Model.speciesinfo)
+            {
+                @Html.ActionLink(species.name, "speciesdetails", new { id = species.url.Replace("http://swapi.dev/api/species/", "").Replace("/", "") }, new { @class = "form-control" })<br />
+            }
+        </dd>
+    </dl>
+</div>

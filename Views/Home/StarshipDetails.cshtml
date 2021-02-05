@@ -1,0 +1,161 @@
+﻿@model starwarsapp.Models.starships
+
+@{
+    ViewBag.Title = "StarshipDetails";
+}
+
+<br />
+@Html.ActionLink("Back", "Films")
+<br />
+<style type="text/css">
+    dd {
+        padding: 5px
+    }
+</style>
+
+<div>
+    <h4>Details for the starship : @Model.name</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            Model
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.model)
+        </dd>
+
+        <dt>
+            Manufacturer
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.manufacturer)
+        </dd>
+
+        <dt>
+            Cost In credits
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cost_in_credits)
+        </dd>
+
+        <dt>
+            Length
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.length)
+        </dd>
+
+        <dt>
+            Max Atmosphering Speed
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.max_atmosphering_speed)
+        </dd>
+
+        <dt>
+            Crew
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.crew)
+        </dd>
+
+        <dt>
+            Passengers
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.passengers)
+        </dd>
+
+        <dt>
+            Cargo Capacity
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cargo_capacity)
+        </dd>
+
+        <dt>
+            Cosumables
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.consumables)
+        </dd>
+
+        <dt>
+            Hyper Drive Rating
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hyperdrive_rating)
+        </dd>
+
+        <dt>
+            MGLT
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MGLT)
+        </dd>
+
+        <dt>
+            Starship Class
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.starship_class)
+        </dd>
+
+        <dt>
+            Created
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.created)
+        </dd>
+
+        <dt>
+            Edited
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.edited)
+        </dd>
+
+        <dt>Pilots : </dt>
+        <dd>
+            @foreach (var people in Model.pilots)
+            {
+                @Html.ActionLink(starwarsapp.Models.StarWarsApi.GetCharactersInfo(Convert.ToInt32(people.ToString().Replace("http://swapi.dev/api/people/", "").Replace("/", ""))).name, "peopledetails", new { id = people.ToString().Replace("http://swapi.dev/api/people/", "").Replace("/", "") }, new { @class = "form-control" })<br />
+            }
+        </dd>
+
+        <dt>Films : </dt>
+        <dd>
+            @foreach (var film in Model.films)
+            {
+                @Html.ActionLink(starwarsapp.Models.StarWarsApi.GetFilmName(Convert.ToInt32(film.Replace("http://swapi.dev/api/films/", "").Replace("/", ""))), "filmdetails", new { id = film.Replace("http://swapi.dev/api/films/", "").Replace("/", "") }, new { @class = "form-control" })<br />
+            }
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,25 @@
+﻿@model starwarsapp.Models.films
+
+@{
+    ViewBag.Title = "Films";
+}
+
+<h2>Films</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Following are the @Model.count.ToString() Star wars films
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.results) {
+    <tr>
+        <td style="padding:10px">
+            @Html.ActionLink(item.title, "filmdetails", new { id=item.url.Replace("http://swapi.dev/api/films/","").Replace("/","") }, new { @class="form-control" })
+        </td>
+    </tr>
+}
+
+</table>

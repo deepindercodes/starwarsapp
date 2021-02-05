@@ -1,0 +1,141 @@
+﻿@model starwarsapp.Models.characters
+
+@{
+    ViewBag.Title = "PeopleDetails";
+}
+
+<br />
+@Html.ActionLink("Back", "Films")
+<br />
+<style type="text/css">
+    dd {
+        padding: 5px
+    }
+</style>
+
+<div>
+    <h4>Character Details of : @Model.name</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            Height
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.height)
+        </dd>
+
+        <dt>
+            Mass
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mass)
+        </dd>
+
+        <dt>
+            Hair Color
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hair_color)
+        </dd>
+
+        <dt>
+            Skin Color
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.skin_color)
+        </dd>
+
+        <dt>
+            Eye Color
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.eye_color)
+        </dd>
+
+        <dt>
+            Birth Year
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.birth_year)
+        </dd>
+
+        <dt>
+            Gender
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gender)
+        </dd>
+
+        <dt>
+            Homeworld
+        </dt>
+
+        <dd>
+            @Html.ActionLink(starwarsapp.Models.StarWarsApi.GetPlanetInfo(Convert.ToInt32(Model.homeworld.Replace("http://swapi.dev/api/planets/", "").Replace("/", ""))).name, "planetdetails", new { id = Model.homeworld.Replace("http://swapi.dev/api/planets/", "").Replace("/", "") }, new { @class = "form-control" })
+        </dd>
+
+        <dt>
+            Created
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.created)
+        </dd>
+
+        <dt>
+            Edited
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.edited)
+        </dd>
+
+        <dt>Films : </dt>
+        <dd>
+            @foreach (var film in Model.films)
+            {
+                @Html.ActionLink(starwarsapp.Models.StarWarsApi.GetFilmName(Convert.ToInt32(film.Replace("http://swapi.dev/api/films/", "").Replace("/", ""))), "filmdetails", new { id = film.Replace("http://swapi.dev/api/films/", "").Replace("/", "") }, new { @class = "form-control" })<br />
+            }
+        </dd>
+
+        <dt>Species : </dt>
+        <dd>
+            @foreach (var species in Model.species)
+            {
+                @Html.ActionLink(starwarsapp.Models.StarWarsApi.GetSepciesInfo(Convert.ToInt32(species.ToString().Replace("http://swapi.dev/api/species/", "").Replace("/", ""))).name, "speciesdetails", new { id = species.ToString().Replace("http://swapi.dev/api/species/", "").Replace("/", "") }, new { @class = "form-control" })<br />
+            }
+        </dd>
+
+        <dt>Vehicles : </dt>
+        <dd>
+            @foreach (var vehicle in Model.vehicles)
+            {
+                @Html.ActionLink(starwarsapp.Models.StarWarsApi.GetVehicleInfo(Convert.ToInt32(vehicle.ToString().Replace("http://swapi.dev/api/vehicles/", "").Replace("/", ""))).name, "vehicledetails", new { id = vehicle.ToString().Replace("http://swapi.dev/api/vehicles/", "").Replace("/", "") }, new { @class = "form-control" })<br />
+            }
+        </dd>
+
+        <dt>Star Ships : </dt>
+        <dd>
+            @foreach (var starship in Model.starships)
+            {
+                @Html.ActionLink(starwarsapp.Models.StarWarsApi.GetShipInfo(Convert.ToInt32(starship.ToString().Replace("http://swapi.dev/api/starships/", "").Replace("/", ""))).name, "starshipdetails", new { id = starship.ToString().Replace("http://swapi.dev/api/starships/", "").Replace("/", "") }, new { @class = "form-control" })<br />
+            }
+        </dd>
+
+    </dl>
+</div>
