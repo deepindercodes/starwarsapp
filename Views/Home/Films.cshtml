@@ -14,12 +14,19 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model.results) {
     <tr>
-        <td style="padding:10px">
-            @Html.ActionLink(item.title, "filmdetails", new { id=item.url.Replace("http://swapi.dev/api/films/","").Replace("/","") }, new { @class="form-control" })
+        <td>
+            Search:&nbsp;<input id="txtsearchfilm" type="text" class="form-control" />
         </td>
     </tr>
-}
+
+    @foreach (var item in Model.results)
+    {
+        <tr movietitle="@item.title @item.opening_crawl" class="movietr">
+            <td style="padding:10px">
+                @Html.ActionLink(item.title, "filmdetails", new { id = item.url.Replace("http://swapi.dev/api/films/", "").Replace("/", "") }, new { @class = "form-control" })
+            </td>
+        </tr>
+    }
 
 </table>

@@ -17,5 +17,20 @@ namespace starwarsapp
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            if (Server != null)
+            {
+                Exception ex = Server.GetLastError();
+
+                if (Response.StatusCode != 404)
+                {
+                    //all errors can be logged here
+
+                    HttpContext.Current.Response.Redirect("/home/invalidrequest");
+                }
+            }
+        }
     }
 }

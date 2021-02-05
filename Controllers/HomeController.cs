@@ -24,6 +24,11 @@ namespace starwarsapp.Controllers
             return View();
         }
 
+        public ActionResult InvalidRequest()
+        {
+            return View();
+        }
+
         public ActionResult Films()
         {
             return View(StarWarsApi.GetFilms());
@@ -31,7 +36,7 @@ namespace starwarsapp.Controllers
 
         public ActionResult FilmDetails(int id)
         {
-            return View(StarWarsApi.GetFilmDetails(id));
+            return View(StarWarsApi.GetFilmDetails((int)id));
         }
 
         public ActionResult PeopleDetails(int id)
